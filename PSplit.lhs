@@ -1,7 +1,7 @@
 
 > {-# LANGUAGE OverloadedStrings #-}
 
-> module PSplit (getChunk, paragraphLine, fileChunks, main) where
+> module PSplit (getChunk, paragraphLine, fileChunks, chunkWrites) where
 
 > import System.IO
 > import Control.Monad (sequence_, (<=<), (>=>), zipWithM_)
@@ -9,8 +9,6 @@
 > import Data.Text.Lazy (Text)
 > import Data.Text.Lazy.IO as T
 > import qualified Data.Text.Format as F
-> import Data.Monoid ((<>))
-> import Options.Applicative
 
 "An action that writes a file out into chunks broken on paragraph boundaries."
 
@@ -87,46 +85,8 @@ function; it's "map (flip openFile WriteMode) filenames".
 Now what? Now we need to get the initial input state. No we don't. Let's wrap
 this shit together.
 
-> chunkWrites :: Text -> Int -> Int -> FilePath -> IO ()
+> chunkWrites :: String -> Int -> Int -> FilePath -> IO ()
 > chunkWrites pfx a n =
->     zipWithM_ chunkWrite (filenames pfx a) . flip fileChunks n . T.lines
+>     zipWithM_ chunkWrite (filenames (T.pack pfx) a) . flip fileChunks n . T.lines
 >     <=< T.readFile
 
-Ok, now command line arguments. This is a Thing all to itself. But since
-chunkWrites is the action of the program, we see immediately what it needs from
-the user:
-
-> data PSplitArgs = Args
->     { suffixLength :: Int
->     , lines :: Int
->     , input :: FilePath
->     , prefix :: String
->     }
-
-> args :: Parser PSplitArgs
-> args = Args
->     <$> option
->         (long "suffix-length"
->         <> short 'a'
->         <> help "use suffixes of length N (default 2)"
->         <> metavar "N"
->         <> value 2)
->     <*> option
->         (long "lines"
->         <> short 'l'
->         <> metavar "NUMBER"
->         <> help "put at least NUMBER lines per output file")
->     <*> argument' str
->         (metavar "INPUT"
->         <> value "-")
->     <*> argument str
->         (metavar "PREFIX"
->         <> value "x")
-
-TODO: Make this look more like split's options. Also, add a 'number' option.
-
-> main = execParser opts >>= \ (Args a n fp pfx) -> chunkWrites (T.pack pfx) a n fp
->   where
->    opts = info (helper <*> args)
->        (fullDesc
->        <> progDesc "Split a file into a number of other files")
