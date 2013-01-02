@@ -1,5 +1,7 @@
 flarg
 
+> {-# LANGUAGE OverloadedStrings #-}
+
 > module PSplit (getChunk, paragraphLine, fileChunks, main) where
 
 > import System.IO
