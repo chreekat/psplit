@@ -2,8 +2,8 @@
 > {-# LANGUAGE TemplateHaskell #-}
 
 > import PSplit
-> import Data.Text (Text)
-> import qualified Data.Text as T
+> import Data.Text.Lazy (Text)
+> import qualified Data.Text.Lazy as T
 > import Test.QuickCheck
 > import Test.QuickCheck.All
 > import Safe
@@ -53,7 +53,7 @@ Ok, that's fine. Now to actually build some tests.
 > on cmp g l r = cmp (g l) (g r)
 
 > prop_sameText input numLines =
->     ((==) `on` (filter paragraphLine)) input (chunk ++ nextInput)
+>     ((==) `on` filter paragraphLine) input (chunk ++ nextInput)
 >   where (nextInput, chunk) = getChunk input numLines
 
 > prop_splitsAtBoundary input numLines =
