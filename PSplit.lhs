@@ -1,4 +1,3 @@
-flarg
 
 > {-# LANGUAGE OverloadedStrings #-}
 
