@@ -7,7 +7,9 @@ synopsis:            Like split(1), but only splits on paragraph boundaries.
 description:         This package provides the psplit utility. Like split(1), it
                      splits a file into a number of other files. But it only
                      splits on paragraph boundaries.
-license:             WTFPL
+
+                     Liberally licensed under the WTFPL (see LICENSE).
+license:             OtherLicense
 license-file:        LICENSE
 author:              Bryan Richter
 maintainer:          b@chreekat.net
