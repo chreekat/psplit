@@ -1,7 +1,3 @@
-Ok, now command line arguments. This is a Thing all to itself. But since
-chunkWrites is the action of the program, we see immediately what it needs from
-the user:
-
 >  import PSplit (chunkWrites)
 >  import Options.Applicative
 >  import Data.Monoid ((<>))
@@ -12,6 +8,8 @@ the user:
 >      , input :: FilePath
 >      , prefix :: String
 >      }
+
+-- TODO: Make this look more like split's options. Also, add a 'number' option.
 
 >  args :: Parser PSplitArgs
 >  args = Args
@@ -33,11 +31,8 @@ the user:
 >          (metavar "PREFIX"
 >          <> value "x")
 
-TODO: Make this look more like split's options. Also, add a 'number' option.
-
->  main = execParser opts >>= \ (Args a n fp pfx) -> chunkWrites pfx a n fp
+>  main = execParser opts >>= \(Args a l fp pfx) -> chunkWrites pfx a l fp
 >    where
->     opts = info (helper <*> args)
->         (fullDesc
->         <> progDesc "Split a file into a number of other files")
-
+>     opts = info (helper <*> args) $
+>         fullDesc
+>         <> progDesc "Split a file into a number of other files"
