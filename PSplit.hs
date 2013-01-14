@@ -57,6 +57,9 @@ filenames pfx m =
 
 -- | An action that writes a file out into chunks of some minimum length,
 -- broken on paragraph boundaries.
+--
+-- FIXME: Issue #1: Replace T.readFile with a func that reads stdin if
+-- input file is "-".
 chunkWrites :: String   -- ^ output prefix; String to interface with CmdArgs.
             -> SufLen   -- ^ suffix length
             -> Int      -- ^ min lines for each chunk
