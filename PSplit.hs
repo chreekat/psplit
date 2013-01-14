@@ -36,8 +36,8 @@ paragraphLine :: Text -- ^ Line to be checked
               -> Bool -- ^ Is line not empty?
 paragraphLine = not . T.null
 
--- | The action that loops the getChunk action while the input state is not empty,
--- accumulating and returning the results.
+-- | Folding getChunk over the input state, accumulating and returning the
+-- results.
 fileChunks :: InputState
            -> Int
            -> [[Text]]
