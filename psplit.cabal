@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                psplit
-version:             0.1.0.0
+version:             0.1.0.1
 synopsis:            Like split(1), but only splits on paragraph boundaries.
 description:         This package provides the psplit utility. Like split(1), it
                      splits a file into a number of other files. But it only
