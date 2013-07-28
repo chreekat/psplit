@@ -1,6 +1,5 @@
 import PSplit (chunkWrites)
 import Options.Applicative
-import Data.Monoid ((<>))
 
 data PSplitArgs = Args
     { suffixLength :: Int

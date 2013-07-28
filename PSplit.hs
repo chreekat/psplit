@@ -2,7 +2,7 @@
 
 module PSplit (getChunk, paragraphLine, fileChunks, chunkWrites) where
 
-import Control.Monad ((<=<), (>=>), zipWithM_)
+import Control.Monad ((<=<), zipWithM_)
 import Data.List (unfoldr)
 import qualified Data.Text.Lazy as T
 import Data.Text.Lazy (Text)
