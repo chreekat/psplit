@@ -1,2 +1,5 @@
+Make options look more like split's options | id:1c4235ba28608243f1c47b50228d2aa7b0453087
 - Make 'cabal bench' work. | id:2dc03f7a0b31a1aa6d70a993343128ac79f6b79d
+Support reading from stdin | id:3e25224d9062b37e339db80f47e61cbda455bf68
 - Add Criterion benchmarks | id:53279e9a93965104145fd15d9c24e802af35c529
+Add a 'number' option. | id:c6e2b735526bfaae8b341e051a935f0aa7770338
