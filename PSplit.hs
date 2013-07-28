@@ -45,8 +45,8 @@ fileChunks :: InputState
            -> [[Text]]
 fileChunks input n = unfoldr chunkify input
   where
-    chunkify ls = Just $ swap $ getChunk ls n
-    chunkify [] = Nothing
+    chunkify []       = Nothing
+    chunkify ls@(_:_) = Just $ swap $ getChunk ls n
 
 -- | To keep the args to chunkWrites at bay
 type SufLen = Int
