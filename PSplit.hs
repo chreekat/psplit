@@ -3,9 +3,11 @@
 module PSplit (getChunk, paragraphLine, fileChunks, chunkWrites) where
 
 import Control.Monad ((<=<), (>=>), zipWithM_)
+import Data.List (unfoldr)
 import qualified Data.Text.Lazy as T
 import Data.Text.Lazy (Text)
 import Data.Text.Lazy.IO as T
+import Data.Tuple (swap)
 import qualified Data.Text.Format as F
 
 -- | An action that writes a list of lines to a specified file.
@@ -41,9 +43,10 @@ paragraphLine = not . T.null
 fileChunks :: InputState
            -> Int
            -> [[Text]]
-fileChunks [] _ = []
-fileChunks ls n = let (ls', chunk) = getChunk ls n in
-    chunk : fileChunks ls' n
+fileChunks input n = unfoldr chunkify input
+  where
+    chunkify ls = Just $ swap $ getChunk ls n
+    chunkify [] = Nothing
 
 -- | To keep the args to chunkWrites at bay
 type SufLen = Int
