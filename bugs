@@ -1,0 +1,2 @@
+- Make 'cabal bench' work. | id:2dc03f7a0b31a1aa6d70a993343128ac79f6b79d
+- Add Criterion benchmarks | id:53279e9a93965104145fd15d9c24e802af35c529

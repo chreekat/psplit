@@ -1,0 +1,4 @@
+/ Rewrite PSplit.lhs | id:25fecc6269373a2e38acae305742f41f7b021bfa
+/ Rewrite Test.lhs | id:2e29819a91be6ed54e373bd46137421314924561
+/ Make 'cabal test' work. | id:df9396d28381681025c9787bb074c9de242e1134
+/ Cabal-ify | id:eff373c1185b6dfa0e0147da2965f7e21488bc7f
